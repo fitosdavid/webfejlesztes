@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FalMester - Ajánlatkérés</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="images/favicon.ico">
+
+    <script src="js/validation.js" defer></script>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">FalMester Kft. 🎨</div>
+            <nav>
+                <a href="index.html">Kezdőlap</a>
+                <a href="services.html">Szolgáltatások</a>
+                <a href="calculator.html">Anyagszükséglet</a>
+                <a href="quote.html" class="active">Ajánlatkérés</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container_quote">
+
+        <h1>Kérjen ingyenes árajánlatot!</h1>
+        <p>Töltse ki űrlapunkat, és 24 órán belül felvesszük Önnel a kapcsolatot.</p>
+
+        <form id="quoteForm" class="quote-form" action="https://httpbin.org/post" method="POST">
+
+            <div class="form-group">
+                <label for="fullname">Teljes név</label>
+                <input type="text" id="fullname" name="fullname"> <!-- name: beviteli mező adatainak elküldése a szerveroldalra-->
+                <span class="error-message" id="nameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email cím</label>
+                <input type="email" id="email" name="email">      
+                <span class="error-message" id="emailError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="rooms">Helyiségek száma</label>
+                <input type="number" id="rooms" name="rooms" min="1">
+            </div>
+
+            <div class="form-group">
+                <label for="propertyType">Ingatlan típusa</label>
+                <select id="propertyType" name="propertyType">
+                    <option value="lakas">Lakás</option>
+                    <option value="haz">Családi ház</option>
+                    <option value="iroda">Iroda / Üzlethelyiség</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="startDate">Tervezett kezdés dátuma </label>
+                <input type="date" id="startDate" name="startDate">
+            </div>
+
+            <div class="form-group">
+                <label>Sürgősség:</label>
+                <div class="radio-group">
+                    <input type="radio" id="normal" name="urgency" value="normal" checked> <!--checked: automatikusan be van jelölve-->
+                    <label for="normal">Normál határidő</label>
+                    
+                    <input type="radio" id="urgent" name="urgency" value="urgent">
+                    <label for="urgent">Sürgős (+20%)</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="wallColor">Elképzelt színvilág:</label>
+                <input type="color" id="wallColor" name="wallColor" value="#ffddaa">
+            </div>
+
+            <button type="submit">Ajánlat küldése</button>  <!--submit: adatok elküldése a szervernek-->
+
+        </form>
+    </main>
+
+    <footer>
+        <div>
+            <p>&copy; 2025 FalMester Felújítás. Minden jog fenntartva.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

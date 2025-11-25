@@ -1,0 +1,316 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}   /*css alaphelyzetbe állítása*/
+
+body {
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;          /* nézetablak 100%-át kitöltse*/
+    font-family: "Oswald", sans-serif;
+    line-height: 2;
+    background-color: #7494A1;
+    color: #333;
+}
+/* ------------------------------------------------------------------------*/
+.container {
+    background-color:#406278;
+    color: #333;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.logo {
+    font-size: 1.5rem;  /*html gyökerét veszi figyelembe*/
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.container nav a {
+    justify-content: center;
+    background-color: #7494A1;
+    color: #333;
+    text-decoration: none;
+}
+
+nav a:hover{ 
+    color: #0B2852;
+    background-color: #406278;
+} 
+
+nav a.active {
+    color: #0B2852;
+}
+
+/*---------------------------------------------------------------------------*/
+/* Kezdőlap */
+
+main {
+    flex-grow: 1;  /* body-ban lévő szabad hely kitöltése*/
+}
+
+.hero {
+    background-image: url('../images/hero.jpg'); 
+    background-size: cover; /*teljes felület lefedése*/
+    background-position: center;
+    height: 60vh; /*nézetablak 60%-át kitöltse */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color:#333 ;
+}
+
+.hero-content h1 {
+    font-size: 2,5rem;
+    margin-top: 30px;
+}
+
+/* Gomb */
+.btn {
+    cursor:pointer;
+    text-decoration: none;
+    color: #333;
+}
+
+.btn:hover {
+    color: black;
+}
+
+/* Bemutatkozó kártyák */
+.intro {
+    padding-top: 40px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.intro_text {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 1.2rem;
+}
+
+.intro_pic{
+    max-width: 100%;
+}
+    
+.features-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.feature-card {
+    background-color: #406278;
+    padding: 20px;
+    border-radius: 30px; 
+}
+
+/* --------------------------------------------------------------------------*/
+/* Szolgáltatások */
+
+.container_main h1, p{
+    margin-left: 5px;
+}
+
+.table-responsive {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;  /*cellák közti határok összeolvadnak*/
+}
+
+.price-table th, .price-table td {
+    padding: 12px;
+    border: 2px, solid, #D1BD9D;
+    text-align: left;
+    background-color: #587787
+}
+
+/* -------------------------------------------------------------------*/
+/* Anyagszükséglet*/
+
+.container_calculator{
+    background-color: #7494A1;
+}
+
+.container_calculator h1, p{
+    margin-left: 5px;}
+
+.calculator-box {
+    max-width: 100%;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding:10px;
+}
+
+.result-box {
+    display: none;    /*elem elrejtése a felhasználó elől*/
+    margin-top: 20px;
+    padding: 10px;
+    background-color:#406278; 
+    color: #333;
+}
+
+/* -------------------------------------------------------------------*/
+/* Ajánlatkérés */ 
+    
+.container_quote{
+    background-color: #7494A1;
+}
+
+.container_quote h1, p{
+    margin-left: 5px;
+}
+
+.quote-form{
+    max-width: 100%;
+    padding: 20px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 10px;
+}
+
+.radio-group input {
+    width: auto; /* Radio gomb ne legyen 100% széles */
+}
+
+.error-message {
+    color: red;
+    font-size: 0.85rem; 
+    margin-top: 5px;
+}
+
+/*----------------------------------------------------------------------------*/
+/* --- Lábléc --- */
+
+footer {
+    background-color: #406278;
+    text-align: center;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/*---------------------------------------------------------------------------*/
+/* Media Queryk beállítása */
+
+/* tablet nézet*/
+@media screen and (min-width: 40em) {
+
+    .container nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+
+    }
+    .container nav a{
+        width: 100%;
+    }
+
+    .feature-card{
+        display: flex;
+        justify-content: center;
+    }
+
+    footer{
+        justify-content: center;
+    }
+
+
+    .container_main > h1, p{
+        text-align: center;
+    }
+
+    .container_calculator > h1, p{
+        text-align: center;
+    }
+
+    .container_quote h1, p{
+        text-align: center;
+    }
+
+    }
+
+/*desktop nézet*/
+@media screen and (min-width: 60em) {
+
+    .container{
+        display: flex;
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 0;
+    }
+
+    .logo{
+        flex: 1;            /* cím 1/3ad részt fog elfoglalni a headerben*/
+    }
+
+    .container nav{
+        flex: 2;   /* navigáció 2/3-ad részt fog elfoglalni a headerben */
+    }
+
+    .container nav a{
+        padding: 10px;
+    }
+
+    .features-flex{
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .feature-card{
+
+        width: 100%;
+    }
+
+    .form-group{
+        justify-content: center;
+        align-items: center;
+        width: 30%;
+    }
+
+    .calculator-box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
+
+
+

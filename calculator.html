@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FalMester - Festékkalkulátor</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="images/favicon.ico">
+
+    <script src="js/main.js" defer></script>    <!-- defer: letolti a scriptet, de addig nem futtatja, amíg a html nincs feldolgozva-->
+
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">FalMester Kft.🎨</div>
+            <nav>
+                <a href="index.html">Kezdőlap</a>
+                <a href="services.html">Szolgáltatások</a>
+                <a href="calculator.html" class="active">Anyagszükséglet</a>
+                <a href="quote.html">Ajánlatkérés</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container_calculator">
+        <h1>Anyagszükséglet Kalkulátor</h1>
+        <p>Számolja ki egyszerűen, mennyi festékre lesz szüksége a felújításhoz!</p>
+
+        <div class="calculator-box">
+            <div class="form-group">
+                <label for="wallWidth">Fal szélessége (méter):</label>
+                <input type="number" id="wallWidth" placeholder="Pl. 4.5" step="0.1">
+            </div>
+
+            <div class="form-group">
+                <label for="wallHeight">Fal magassága (méter):</label>
+                <input type="number" id="wallHeight" placeholder="Pl. 2.7" step="0.1">
+            </div>
+
+            <div class="form-group">
+                <label for="layers">Rétegek száma:</label>
+                <select id="layers">
+                    <option value="1">1 réteg</option>
+                    <option value="2">2 réteg (ajánlott)</option>
+                    <option value="3">3 réteg</option>
+                </select>
+            </div>
+
+            <button class="btn" id="calcButton">Számolás</button>
+
+            <div id="resultArea" class="result-box"> 
+                <h3>Eredmény:</h3>
+                <p id="resultText"></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <p>&copy; 2025 FalMester Felújítás. Minden jog fenntartva.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
