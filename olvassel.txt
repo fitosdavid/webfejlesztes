@@ -1,0 +1,68 @@
+olvassel.txt
+
+Készítette: Fitos Dávid Szilárd (RGZ33P)
+
+A működő weboldal URL címe: https://fitosdavid.github.io/webfejlesztes/index.html
+
+A weboldal témája:
+
+A kezdőlapon a Fal Mester Kft. szobafestő cég rövid bemutatkozását követően a legfontosabb jellemzőket lehet megtalálni, amelyek kiemelik a dolgozók elszántságát és tapasztalatát. A Szolgáltatások oldalon a cég által nyújtott szolgáltatásokról, valamint azok áráról lehet tájékozódni. Az Anyagszükséglet oldalon egy kalkulátor segítségével a vevő kiszámolhatja a festéshez szükséges anyagmennyiséget, aminek kiszámolásához 1 liter festék 10 m^2 falfelülethez elegendő, valamint a biztonság kedvéért egy 10%-os extra mennyiség is rászámolásra kerül, annak érdekében, hogy a vevőnek elegendő legyen a rendelt festék. Az ajánlatkérés oldalon egy űrlap kitöltésével, teljes név, email-cím, valamint egyéb fontos adatok megadásával a vevő egy árajánlati kéréssel kezdheti meg a festési procedúrát, amelyet a munkatársak azonnal érzékelnek. 
+
+A weboldalban 2 HTML oldalhoz tartozik Java Script kód: az Anyagszükséglet kalkulátorában a szükséges festék mennyiségének kiszámításánál, valamint az Ajánlatkérésnél, ahol az űrlap validálását hajtja végre. 
+
+Az Anyagszükséglet oldalon a kalkulátor a következőképpen működik.
+
+	A kód célja, hogy fogadja a felhasználótól a fal szélességét, magasságát és a rétegek számát, majd kiszámítsa a szükséges festékmennyiséget, figyelembe véve egy 10%-os ráhagyást. Végül megjeleníti az eredményt egy rejtett dobozban.
+Először is a const szamoloGomb = document.getElementById('calcButton') segítségével lekérem a HTML-ből a 'calcButton' ID-val rendelkező gombot, hogy később tudjak rá hivatkozni. Azért const-al, hiszen a gomb hivatkozása nem fog megváltozni. Ezt követően a gombhoz hozzárendelek egy eseményfigyelőt (addEventListener), amiben a 'click' paraméter azt figyeli, hogy mikor nyom a felhasználó a gombra. Amennyiben pedig rányomott, elindítja a festekSzamolas függvényt. 
+Létrehozom a festekSzamolas függvényt a function segítségével. A HTML beviteli mezők értékét mindig szövegként kapom meg, ezért a parseFloat és a parseInt beépített függvények segítségével átalakítom őket float- és egész számmá. A szélességet és a magasságot a 'wallWidht' és 'wallHeight' ID-kal rendelkező HTML elemek segítségével lekérem (getElementById). Ezt let-tel teszem, hiszen ezeknek az értéke még változhat. 
+Ezek után egy validációt fogok végrehajtani. Egy if elágazással megnézem, hogy a felhasználó által beírt szélesség és magasség pozitív-e, valamint hogy szám-e. Ezt az isNaN (is not a number) segítségével teszem meg, valamint a feltétel során a || használata a (VAGY)-ot jelenti. Amennyiben az if ág igaz, egy alert-tel jelzem a felhasználónak, hogy érvényes adatokat adjon meg. A return utasítás pedig leállítja a függvény futását, megakadályozva a további számolásokat. 
+A számítás során a falfelulet a szelesseg*magassagbol adódik, a kiadossag konstans pedig azt tárolja, hogy 1 liter festék 10 négyzetméter falfelületre elég. A szükséges festék értékéhez a (falfelulet/kiadossag)*retegek műveletet alkalmazzuk. Majd pedig egy 1.1-os szorzóval egy 10%-os ráhagyást számolunk annak érdekében, hogy biztosan elegendő legyen a felhasználó számára a rendelt festék. 
+Az eredmenySzovegben a template literal segítségével `${}` segítségével kiíratjuk az eredményt. A toFixed(2) az eredmény 2 tizedesjegyes kerekítését teszi lehetővé. A <stron></strong> pedig kiemeli a liter mennyiségét kövéren.
+A végén lekérem ID alapján az eredménydobozt, és azt az elemet, ahová az eredmény szöveg kerül. Majd pedig mivel a CSS-ben a resultArea display: none -t kapott, így rejtve volt eddig, az eredmenyDoboz.style.display = "block" segítségével megjelenítem az eredménydobozt. A végén pedig a szovegHelye.innerHTML = eredmenySzoveg segítségével beírom a szöveget. 
+
+
+Az Ajánlatkérés oldalon az űrlap validációja a következőképpen megy végbe. 
+
+	Először is létrehozok egy eseményfigyelőt (document.addEventListener('DOMContentLoaded', function()), amely garantálja, hogy a benne lévő kód csak akkor fusson le, ha a teljes HTML dokumentum betöltött.
+A következő sorokban lekérem a fontos HTML elemeket az ID-k alapján, hiszen később ezekre fogok hivatkozni. Ezt a const segítségével teszem meg, hiszen ez megtiltja, hogy új érték legyen a változókhoz hozzárendelve. 
+A következő sorokban hozzárendelek egy eseményfigyelőt az űrlaphoz, amely amint a felhasználó megnyomja a Küldés gombot, elindít egy belső, névtelen függvény. A függvény egy 'event' objektumot kap paraméterként, amely tartalmazza az esemény részleteit. A kód végén ezzel a paraméterrel akadályozzuk meg az űrlap alapértelmezett viselkedését, azaz hogy az adatokat elküldje a szerverre.
+Ezután létrehozok egy vanHiba nevű logikai változót, amelynek értékét hamisra állítom. Később ez fogja jelezni, ha hiba van a validálás során. 
+Először a név validálásával kezdem. Megnézem egy if elágazás segítségével, hogy a beírt név hossza kisebb-e mint 5. Ezt a (nevMezo.value.lenght < 5) segítségével teszem meg. Amennyiben ez igaz, a vanHiba logikai változó értékét igazra állítom, jelezve, hogy van hiba. Emellett egy hibajelzés kiírásával jelzem a felhasználó számára, hogy a teljes nevét adja meg. Ezt a (nevHiba.innerText = "Kérlek, add meg a teljes nevedet!" ) segítségével teszem meg. Amennyiben viszont a beírt adat helyes az else ágban, a nevHiba hibaüzenet törlésre kerül a (nevHiba.innerText = "") által. 
+Az e-mail validációja hasonlóképpen megy végbe. Megnézem, hogy tartalmaz-e @ jelet, valamint pontot. A ! a logikai érték igazságát fordítja meg, az includes pedig a tartalmat vizsgálja. Amennyiben nem tartalmaz, az (emailHiba.innerText = "Kérlek, érvényes email címet adj meg!") üzenetet írom ki a felhasználónak, valamint a vanHiba értékét igazra állítom. Amennyiben az email megfelelő, a hibaüzenetet az előzőekhez hasonlóan törlöm. 
+A dátum validálásához először is létrehozok 2 Date objektumot, a valasztottDatum a felhasználó által választott dátumot, míg a maiDatum a kód lefutásakor lévő dátumot tartalmazza. A new lényegében a Date() beépített konstruktorból egy új objektumot hoz létre. 
+A valasztottDatum, mint dátum objektum paraméterül megkapja a felhasználó által bevitt adat értékét. Emellett a maiDatum objektum pedig paraméter nélkül marad, ezzel a kód lefutása pillanatában lévő dátumot tárolja magában. 
+A setHours metódussal a maiDatum objektum óráját, percét, másodpercét és ezredmásodpercét is 0-ra állítja, ezzel lehetővé teszi, hogy az összehasonlítás csak a naptári napra vonatkozzon. Ezáltal a felhasználónak nem kell megadnia az órát és a percet, hanem elegendő a napot. 
+A valasztottDatum és a maiDatum összehasonlításával megnézem, hogy a felhasználó nem múltbeli időpontot adott-e meg. Amennyiben igen, egy alert jelzéssel figyelmeztetem, hogy jövőbeni dátumot adjon meg. A vanHiba értékét pedig igazra állítom. 
+	A végső döntést a vanHiba értéke alapján fogom meghozni. Amennyiben az érték (===) false, egy alert-el jelzem a sikeres kitöltést, és engedélyezem a kód alapvető működését, azaz hogy elküldje az adatokat egy szerverre. Illetve az urlap.reset() segítségével kitörlöm az eddig beírt adatokat. Amennyiben viszont true az értéke a logikai változónak, az event.preventDefault() metódus segítségével megakadályozom az űrlap alapvető viselkedését, és nem küldöm el az adatokat a szerverre. 
+
+
+Az oldalon használt egyedi font-típust itt lehet megtalálni: 
+- https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap
+
+
+
+Másik féltől használt kódrészletek:
+
+- HTML-ben a szín kiválasztásánál a style = "color" megismerése: Gemini
+- Az email validálásának az includes() használatának megismerése: Gemini
+- A dátum validálásánál a Date() használatlának megismerése: Gemini
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
